@@ -1,0 +1,17 @@
+
+This is the source code supplement for chapter 3, Optimization and Optimism.
+It contains:
+
+Makefile--this is set up for a system which has gcc installed,
+but there is no reason the included programs couldn't
+be used on a different platform.
+
+speed.c--this is a little program that exercises some basic language
+constructs and measures how long they take on average.
+
+bubble.c--this is a deliberately poorly written program that YOU
+can optimize!  Use a profiler to find out which functions
+are slow, then apply optimizations to speed it up.  Hints
+are given in the chapter itself.
+
+refs--for further reading on the subject of optimization.

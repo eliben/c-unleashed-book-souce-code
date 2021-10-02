@@ -1,0 +1,55 @@
+Chapter 16 - Graphs
+
+The files in this directory make up a simple but versatile library for
+manipulating graphs. Algorithms are provided for topological sorting,
+finding minimum spanning trees and finding shortest paths. Both adjacency
+lists and adjacency matrices are supported graph data structures.
+
+
+
+
+The following header files provide the 'front end' of the library:
+
+
+graphs.h     The top level header file for the graph library. This provides
+             top level prototypes for both adjacency lists and matrices.
+
+topsort.h    Header file defining the topological sort function in topsort.c
+
+shpath.h     Header file defining various structures and functions used to
+             determine shortest paths.
+
+mstree.h     Header file defining functions to determine the minimum spanning
+             tree (or forest) of undirected graphs.
+
+dfsfuncs.h   Header file defining an example depth-first search function to
+             determine if two vertices are connected in less than E
+             iterations.
+
+
+
+
+The following files are the library proper:
+
+
+graphs.c     The workings behind most of the library. This code provides a
+             common interface for both adjacency matrices and adjacency lists.
+             The top level functions call the correct primitive function as
+             defined in adjlist.c or adjmatrix depending on the type of graph.
+
+graphprv.h   Internally used header which defines the Graph_Spec structure
+             which is used to hold the pointers to the functions for each
+             primitive operation of each graph type.
+
+adjlist.c    An implementation of the primitives required for the library and
+adjlist.h    an instance of a Graph_Spec structure for adjacency lists.
+
+adjmatrix.c  An implementation of the primitives required for the library and
+adjmatrix.h  an instance of a Graph_Spec structure for adjacency matrices.
+
+
+topsort.c    Implementation of some useful algorithms.
+shpath.c
+mstree.c
+dfsfuncs.c
+

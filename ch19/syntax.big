@@ -1,0 +1,42 @@
+expression ::= logical-OR-expression #
+empty ::= "" #
+letter (parletter) :L:= "a" | "b" | "c" #
+primary-expression ::= identifier [genid] | constant [genconst] | "(" expression ")" #
+identifier :L:= letter identifier-tail #
+identifier-tail {lexidtail} ::= letter identifier-tail | digit identifier-tail | "_" identifier-tail | empty #
+single-character (parchar) :L:= "a" | "b" | "c" | "0" | "1" | "2" | "+" | "-" | "=" #
+constant ::= integer-constant | character-constant | floating-constant #
+character-constant ::= "L" small-character-constant | small-character-constant #
+small-character-constant :L:= "'"single-character"'" | "'"escaped-character"'" #
+digit (pardigit) :L:= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" #
+octal-digit (paroctal) :L:= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" #
+optional-octal-digit ::= octal-digit | empty #
+hex-digit ::= digit | upper-hex-digit | lower-hex-digit #
+upper-hex-digit ::= "A" | "B" | "C" | "D" | "E" | "F" #
+lower-hex-digit ::= "a" | "b" | "c" | "d" | "e" | "f" #
+escaped-character {lexescchar} :L:= "\\" escape-sequence #
+escape-sequence ::= "n" | "t" | "v" | "b" | "r" | "d" | "a" | "\\" | "?" | "'" | octal-digit optional-octal-digit optional-octal-digit | "x" hex-digit hex-digit #
+integer-constant {lexintcon} :L:= digit integer-constant | digit #
+floating-constant {lexflpcon} :L:= integer-part fraction-part E-part exponent F-part #
+integer-constantNL ::= digit integer-constant | digit #
+integer-part ::= integer-constantNL | empty #
+fraction-part ::= point integer-part | empty #
+point ::= "." #
+E-part ::= "e" | "E" | empty #
+F-part ::= "f" | "F" | "l" | "L" | empty #
+exponent ::= optional-sign integer-constant | empty #
+optional-sign ::= "+" | "-" | empty #
+postfix-expression ::= primary-expression #
+unary-expression ::= postfix-expression | [genplusplus] "++" unary-expression | [genminusminus] "--" unary-expression | unary-operator cast-expression [genunary] #
+unary-operator ::= "-" | "!" #
+cast-expression ::= unary-expression #
+multiplicative-expression ::= cast-expression | multiplicative-expression "*" cast-expression [genmultiply] | multiplicative-expression "/" cast-expression [gendivide] | multiplicative-expression "%" cast-expression [genmodulus] #
+additive-expression ::= multiplicative-expression | additive-expression "+" multiplicative-expression [genadd] | additive-expression "-" multiplicative-expression [gensubtract] #
+shift-expression ::= additive-expression | shift-expression "<<" additive-expression [genleftshift] | shift-expression ">>" additive-expression [genrightshift] #
+relational-expression ::= shift-expression | relational-expression "<" shift-expression [genlt] | relational-expression ">" shift-expression [gengt] | relational-expression "<=" shift-expression [genle] | relational-expression ">=" shift-expression [genge] #
+equality-expression ::= relational-expression | equality-expression "==" relational-expression [geneq] | equality-expression "!=" relational-expression [genne] #
+AND-expression ::= equality-expression | AND-expression "&" equality-expression [genAND] #
+exclusive-OR-expression ::= AND-expression | exclusive-OR-expression "^" AND-expression [genXOR] #
+inclusive-OR-expression ::= exclusive-OR-expression | inclusive-OR-expression "|" exclusive-OR-expression [genOR] #
+logical-AND-expression ::= inclusive-OR-expression | logical-AND-expression "&&" inclusive-OR-expression [genLAND] #
+logical-OR-expression ::= logical-AND-expression | logical-OR-expression "||" logical-AND-expression [genLOR] #

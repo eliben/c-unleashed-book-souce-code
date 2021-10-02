@@ -1,0 +1,25 @@
+Chapter 19 - Expression Parsing and Evaluation
+
+This directory contains source code for processing
+expressions written in an arbitrary language.
+
+Unfortunately, the code doesn't work.
+
+We tried very hard (through-the-night hard) to get this code
+working before the book went to press, but it couldn't be done
+in time.
+
+We didn't give up, though, and we very much hope that, by
+the time this book enters your possession, we will
+have produced working code. Please check the
+"C Unleashed" errata site, at:
+
+http://users.powernet.co.uk/eton/unleashed/errata/index.html
+
+for updated code.
+
+
+
+
+Ian Kelly and Richard Heathfield
+18 June 2000

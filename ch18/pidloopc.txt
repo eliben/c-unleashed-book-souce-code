@@ -1,0 +1,205 @@
+The pidloop.c Program
+
+The source code for this program, in standard portable C, is on 
+the companion CD. It provides for either interactive manual or 
+automated execution of a PID control algorithm with various 
+parameter settings. It contains a versatile PID implementation, a 
+minimal simulation of a second-order response system, and an 
+extensive user interface and execution options to allow 
+experimentation with the algorithm.
+
+Here is a description of its operation and a quick walk-through.
+
+Terminal Interaction
+
+If you build the executable with your favorite compiler and run 
+it with no command line parameters, the following should appear 
+on the standard error output:
+
+Screen display of pidloop program:
+
+Current Parameter Values
+    [P]  Proportional gain              0.0000
+    [I]  Integral gain                  0.0000
+    [D]  Derivative gain                0.0000
+    [H]  output Hold                         0
+    [A]  Acceleration feed forward      0.0000
+    [F]  Friction feed forward          0.0000
+    [V]  Velocity feed forward          0.0000
+    [B]  constant Bias                  0.0000
+    [R]  acceleration Rate              0.0000
+    [S]  Set point                           0
+    [T]  Transfer ratio                 0.0000
+    [L]  response Lag                   0.0000
+    [N]  miNimum output                 0.0000
+    [M]  Maximum output                 0.0000
+    [W]  sleW limit                     0.0000
+    [Y]  cYcle count                    0.0000
+
+Enter letter to change value
+
+This is the menu, notice that it includes many of the terms 
+defined in the chapter text, at least those used in calculating a 
+control Output other than Process Variable feedback. Press the 
+Enter or Return key on your keyboard several times and it will 
+execute several iteration of the PID control loop.  Since all of 
+the values are 0, it will output this:
+
+    1: SP    0.00 PV    0.00 Out    0.00
+    2: SP    0.00 PV    0.00 Out    0.00
+    3: SP    0.00 PV    0.00 Out    0.00
+
+This output is sent to stdout, so you can redirect it to a file.  
+The numeric values are in fixed width columns to make them easy 
+to copy in any text editor which supports a column mode and paste 
+into a spread sheet program, for example, for analysis.
+
+Anytime the program is waiting for input you can also change one 
+of the variables displayed in the program or quit. Values are set 
+by entering the letter displayed in the left hand column of the 
+menu. Entering the initial letter only in a string results in a 
+prompt displaying the current value of the variable and the 
+minimum and maximum acceptable values.
+
+Press the letter 'P', upper or lower case, and Enter, and you 
+will see:
+
+Enter Proportional gain current value 0.0000 range 0.0000 to 
+100.0000
+
+Enter the value "0.5" and Enter, and the menu will repeat itself 
+showing the new value of 0.5000 for the Proportional Gain value.
+You can also enter a value directly without the prompt.  Enter 
+the complete string "T = .7", either case, any amount of white 
+space, or none, on either sign of the '=', and Enter. The menu 
+will repeat, showing that Transfer Ratio now has the value of 
+0.7000.
+
+Next enter the string "Y = 10" and watch what happens. Setting 
+the "cYcle count" to a non-zero value causes the program to 
+execute that many iterations of the loop without stopping for 
+user input.
+
+Now let's see it actually do something. At successive pauses 
+enter the following: "S = 50", "L = .75", "M = 100", and finally 
+"Y = 10" again.  You should see:
+
+   14: SP   50.00 PV    0.00 Out   25.00
+   15: SP   50.00 PV    4.38 Out   22.81
+   16: SP   50.00 PV    7.27 Out   21.36
+   17: SP   50.00 PV    9.19 Out   20.40
+   18: SP   50.00 PV   10.47 Out   19.77
+   19: SP   50.00 PV   11.31 Out   19.34
+   20: SP   50.00 PV   11.87 Out   19.07
+   21: SP   50.00 PV   12.24 Out   18.88
+   22: SP   50.00 PV   12.48 Out   18.76
+   23: SP   50.00 PV   12.64 Out   18.68
+
+Enter "?" and the menu will display without prompting or changing 
+any values.  Finally enter "Q" or "q", or the keystroke sequence 
+which generates EOF, if you know it, and the program will produce 
+a summary of its operations and exit to the system:
+
+23 repetitions, RMS error 24.948277
+
+For anyone not familiar with the term "RMS" it stands for "Root 
+Mean Square" and is a way of measuring deviations in statistics 
+and many quantities in engineering. In this case it is showing 
+the average Error (difference between the Set Point and the 
+Process Variable) over the run of the program. Since some Errors 
+might be positive and others negative, an RMS value is computed 
+by taking the square of each value and accumulating the sum of 
+the squares. The total is then divided by the number of samples 
+to get the "Mean Square", and the positive square root is taken 
+to yield the "Root Mean Square".
+
+Only the text strings with the iteration count and SP, PV, and 
+Out values are written to stdout.  All menus and prompts go to 
+stderr, so the program can run with stdout redirected to a file 
+without the prompts and menus showing up in the file.
+
+Preset and Event Operation
+
+Running pidloop interactively would quickly become tiresome and 
+error prone for simulations with 20, 50, or 100 iterations, so 
+the program has another mode of operation. At startup it uses 
+argc and argv and looks at any command line arguments it 
+receives. Any argument beginning with "-v" or "-V" selects 
+verbose mode. The value strings are written to both stdout (for 
+redirection) and stderr, so you can see and interact with the 
+program even while the output is being captured.  Using the "-v" 
+or "-V" argument without redirecting stdout results in a messy 
+display.
+
+Any command line arguments found without an initial '-' are taken 
+to be file names and are passed to the ParseParams() function for 
+opening and reading.  The files are a simple text format, and the 
+parser is quite simple and discards anything it does not 
+recognize.  A command line file can contain parameter settings 
+and events. All the input files on the companion CD for use with 
+this program are named with the extension .pid, but this is not a 
+requirement.
+
+Here are partial contents of the provided file step.pid:
+
+Partial contents of file step.pid
+
+# ordinary parameters, set before execution begins
+
+B=20           constant Bias
+S=20           Set point
+T=1            Transfer ratio
+L=.368         response Lag
+N=-100         miNimum output
+M=100          Maximum output
+
+# execute 51 cycles altogether, 11 with the
+# original parameters to allow the output to settle
+
+Y=101          cYcle count
+
+# now events triggered after 11 cycles
+# change the constant Bias and Set point
+# both from 20 to 30, a 10% step and turn
+# on the P with a high gain
+
+@21  S=30      Set point
+@21  P=1.9     Proportional gain
+
+# finished 51 cycles, time to quit
+
+@51  Q         Quit
+
+To save space here, a top header and the lines which set 
+parameters to 0 are omitted. The supplied .pid files all use the 
+'#' to begin comment lines. This is handy for human readers but 
+not necessary to the program. Any line in an input file not 
+beginning with an '@' character or a letter (upper or lower case) 
+is discarded by the parser.
+
+Immediate parameters have the form "Z=digits", where the letter 
+must be the first character in the string and '=' the second. 
+There may be white space between '=' and the beginning of the 
+numeric value, and anything at all on the remainder of the line 
+after the final character strtod() accepts as part of a floating 
+point value. All immediate parameters are processed and set 
+before the program begins running the control loop.
+
+Timed events are on lines which begin with an '@' as the very 
+first character. A numeric value follows the '@' and optional 
+leading white space, and this value indicates the iteration count 
+when the event should execute.  After the time and more optional 
+white space comes one of the menu letters or 'Q' for quit. After 
+any letter other than 'Q' should be an '=' sign and a numeric 
+value. Timed events are processed whether or not the program is 
+stopping for interactive input for each iteration.
+
+To see how this all works, run pidloop with the following command 
+line (MS-DOS, Windows, UNIX, Linux):
+
+pidloop step.pid -v >step.out
+
+You can open step.out in any standard text editor and watch the 
+results of PID algorithms. The results are plotted in Figure 19.7 
+in the text.
+

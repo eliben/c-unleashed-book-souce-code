@@ -1,0 +1,49 @@
+
+WEB REFERENCES
+
+Hsieh, Paul 
+Programming Optimization
+http://www.azillionmonkeys.com/qed/optimize.html
+
+  This page looks at optimization from several
+  different angles.  The section which lays
+  waste to common misconceptions about optimization
+  is a must-read.
+
+Lee, Michael
+Optimization of Computer Programs in C
+http://www.ontek.com/mikey/optimization.html
+
+  This page focuses on sample microoptimizations 
+  that could help speed up your code, with 
+  discussion of when such changes are useful and 
+  appropriate.  It is essentially an expansion
+  on the Microoptimization section in this chapter.
+
+Nullstone Corporation
+NULLSTONE Optimization Categories
+http://www.nullstone.com/htmls/category.htm
+
+  This is an index to descriptions of common compiler-level
+  optimizations.  Each description includes a clear and 
+  readable example.
+
+PRINT REFERENCES
+
+Abrash, Michael. 
+Zen of Program Optimization
+ISBN 1-883577-03-9 
+
+  Focuses on x86 and Pentium processors with in-depth 
+  examples of optimizing complete programs.  He has
+  several other interesting books specifically addressing 
+  graphics optimization.
+
+Dowd, Kevin & Severance, Charles. 
+High Performance Computing, 2nd Edition
+O'Reilly & Associates. ISBN 1-56592-312-X
+
+  This takes a high level view of computer performance,
+  beyond the scope of language-specific optimizations
+  and includes information on parallelism and supercomputers.
+

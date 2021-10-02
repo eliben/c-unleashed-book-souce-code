@@ -1,0 +1,75 @@
+/*  CUPS - C Unleashed Portable Sockets Library
+*
+*
+*  Copyright (C) 1999   Chad Dixon
+*                       Macmillan Computer Publishing
+*
+*  This program is free software; you can redistribute it
+*  and/or modify it under the terms of the GNU General
+*  Public License as published by the Free Software
+*  Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will
+*  be useful, but WITHOUT ANY WARRANTY; without even the
+*  implied warranty of MERCHANTABILITY or FITNESS FOR A
+*  PARTICULAR PURPOSE.  See the GNU General Public License
+*  for more details.
+*
+*  You should have received a copy of the GNU General
+*  Public License along with this program; if not, write
+*  to the Free Software Foundation, Inc., 675 Mass Ave,
+*  Cambridge, MA 02139, USA.
+*
+*  Chad Dixon may be contacted at:
+*     http://www.loopy.org
+*
+*/
+
+
+
+
+Index of files
+
+ctc.c CUPS TCP Client Code
+cts.c CUPS TCP Server Code
+cuc.c CUPS UDP Client Code
+cus.c CUPS UDP Server Code
+wtc.c Windows TCP Client Code
+wts.c Windows TCP Server Code
+wuc.c Windows UDP Client Code
+wus.c Windows UDP Server Code
+utc.c UNIX TCP Client Code
+uts.c UNIX TCP Server Code
+uuc.c UNIX UDP Client Code
+uus.c UNIX UDP Server Code
+u_cups.c UNIX CUPS Code
+u_cups.h UNIX CUPS Header File
+w_cups.c Windows CUPS Code
+w_cups.h Windows CUPS Header File
+pre.c Preprocessor Based TCP Server Code
+
+/*Note - The u_cups.h and w_cups.h MUST be renamed 
+ * to cups.c and cups.h for the library to function.  
+ * They are named as such for clarity here.  In 
+ * actual use, you would use the associated cups 
+ * library for your platform 
+ */
+
+
+/* Note: Chad means...
+
+If you're running Unix, copy u_cups.h to your Unix
+system as cups.h, and use u_cups.c to build your library.
+
+If you're running Windows, copy w_cups.h to your Windows
+system as cups.h, and use w_cups.c to build your library.
+
+If you're running both, do both.
+
+
+   :-)
+
+   RJH 18 June 2000.
+
+*/

@@ -1,0 +1,24 @@
+# accel1.pid
+#
+# combines proportional, integral and
+# derivative gains with acceleration
+
+P=1.3          Proportional gain
+I=1.2          Integral gain
+D=0.025        Derivative gain
+H=0            output Hold
+A=0            Acceleration feed forward
+F=0            Friction feed forward
+V=0.0          Velocity feed forward
+B=0            constant Bias
+R=3            acceleration Rate
+S=70           Set point
+T=1            Transfer ratio
+L=.368         response Lag
+N=-100         miNimum output
+M=100          Maximum output
+W=0            sleW limit
+Y=51           cYcle count
+@51 s=0
+@51 y=50
+@101 q

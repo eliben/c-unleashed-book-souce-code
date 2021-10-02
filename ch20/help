@@ -1,0 +1,71 @@
+genargs - C program generator, R Heathfield, January 2000
+
+Usage:
+genargs [-internal] infile outfile logfile helpfile
+
+Purpose: creates a C program with
+         primitive argv checking
+
+   -internal: optional switch. If
+              specified, generates
+              an application function.
+
+   infile:    specifies the arguments
+              expected by the program,
+              using the grammar detailed below.
+
+   outfile:   filename in which to store output.
+
+   logfile:   parse errors recorded here.
+
+   helpfile:  used for writing Help() function,
+              displayed when args are incorrect.
+
+--- infile grammar ---
+
+infile:
+  specifier
+  infile specifier
+
+specifier: one of
+  switchspecifier
+  doublespecifier
+  longspecifier
+  stringspecifier
+
+switchspecifier:
+  -identifier
+
+doublespecifier:
+  identifier D
+
+longspecifier:
+  identifier L
+
+stringspecifier:
+  identifier S length
+
+identifier:
+  letter
+  identifiertail letter
+  
+identifiertail:
+  letterorunderscore identifiertail
+  digit identifiertail
+  letterorunderscore
+  digit
+  
+letterorunderscore:
+  letter
+  _
+
+letter: one of
+  A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+  a b c d e f g h i j k l m n o p q r s t u v w x y z
+
+digit: one of
+  0 1 2 3 4 5 6 7 8 9
+
+length:
+  1 to 255
+

@@ -1,0 +1,20 @@
+/**************************************/
+/*                                    */
+/*   Code from the book C Unleashed   */
+/*   Macmillan, 2000                  */
+/*   Chapter 6: Data Files            */
+/*   Steve Summit 2000-03-17          */
+/*                                    */
+/**************************************/
+
+binio.c		binary I/O functions putint(), getint(), putlong(),
+		getlong(), etc.
+csvburst.c	function csvburst() for unpacking CSV lines
+csvwrite.c	function csvwrite() for writing CSV lines
+getcols.c	function getcols() for unpacking rigidly delimited columns
+getwords.c	function getwords() for unpacking whitespace-separated columns
+ieee754.c	functions for converting native float and double
+		to IEEE-754 single and double
+inifetch.c	function inifetch() for fetching values from .ini files
+time_t.c	functions for portably or semiportably handling
+		date/timestamps in data files (text and binary)

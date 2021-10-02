@@ -1,0 +1,99 @@
+Directions for use of the Group 3 T.4 facsimilie encoding and
+decoding programs from Chapter 18 of C Unleashed from Macmillan
+Computer Publishing.
+
+This file and related material are:
+
+Copyright (C) 2000  by Jack Klein
+                   and McMillan Computer Publishing
+
+These programs including all source files, header files, and
+text files like this one are free software; you can redistribute
+them and/or modify them under the terms of the GNU General
+Public License as published by the Free Software Foundation;
+either version 2 of the license or (at your option) any later
+version.
+
+These programs are distributed in the hope that they will be
+useful, but WITHOUT ANY WARRANTY; without even the implied
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public
+License along with this material; if not, write to:
+
+Free Software Foundation, Inc.,
+675 Mass Ave,
+Cambridge, MA 02139, USA.
+
+Jack Klein may be contacted by email at:
+   The_C_Guru@yahoo.com
+
+Here are directions for building the programs from their source
+files and using them:
+
+text2bin:
+
+  This program generates binary images files from ordinary
+  text files. It contains a 16x16 pixel character generator
+  based on the original IBM PC text mode character set, so it
+  produces glyphs for all values from 0 through 255, inclusive.
+
+  The program is contained in a single source code file,
+  text2bin.c, and includes only standard C headers. To build
+  merely follow your compiler's standard procedure to generate
+  an executable.
+
+  To use the program, type text2bin file1 file2 from a command
+  prompt. file1 is the name of an ordinary text file, file2 is
+  the name of a new file to be created containing the binary
+  output.
+
+  Up to 108 characters from each line of text are converted, for
+  up to 64 lines. The output binary is a simulation of a fax
+  page scanned at standard resolution using approximately a 10
+  point fixed pitch font, at approximately 6 lines per inch.
+
+  The program does not require any specific sizes for C integral
+  variable types, but it does output 8 pixels per unsigned char
+  in the output file. If the implementation provides character
+  types with more than 8 bits, only the lowest 8 bits are used
+  and any higher bits are 0.
+
+  Further information may be found in comments in the source.
+
+lj300:
+
+  This program generates binary files for an HP Laser Jet or
+  compatible printer that accepts the 300 DPI raster graphics
+  format. It assumes that the source file it processes contains
+  216 unsigned chars per scan row, with the lowest 8 bits of
+  each unsigned char containing 8 image pixels. This is the
+  output format of the text2bin program and also corresponds
+  to standard resolution fax scanned images.
+
+  Because some laser printers do not handle more than 2400
+  pixels per row gracefully, the program only outputs the
+  left most 1600 pixels of each scan line. The 200 DPI
+  horizontal and 100 DPI vertical image pixels are interpolated
+  to expand them to 300 DIP. Up to 1024 scan lines are converted.
+
+  The program is contained in a single source code file,
+  lj300.c, and includes only standard C headers. To build
+  merely follow your compiler's standard procedure to generate
+  an executable.
+
+  To use the program type lj300 file1 file2 from a command
+  prompt. file1 is raw binary image input file as described
+  above and as produced by text2bin. file2 is a considerably
+  larger file containing the HP PCL sequence to reproduce the
+  image contained in the binary file.
+
+  If you have access to a compatible printer and are able to
+  send files to it as raw binary, without interpretation or
+  modification, it will reproduce the image on paper.
+
+  On a Windows 95/98/NT computer, the file may be printed
+  by typing the following at a command prompt:
+
+  copy /b filename printer-port

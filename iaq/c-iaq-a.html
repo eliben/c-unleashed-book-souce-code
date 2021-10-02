@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "HTTP://WWW.W3.ORG/TR/REC-HTML40/STRICT.DTD">
+<HTML>
+
+	<HEAD>
+		<TITLE>Infrequently Asked Questions in comp.lang.c - Annotations</TITLE>
+	</HEAD>
+
+	<BODY>
+		<H4><A NAME="meta"></A>Meta-Annotations:</H4>
+		<P>This document was originally written as a morning's work in mid-March
+		of 1995. The idea came from a vague idea I had about &quot;correcting&quot;
+		the FAQ posting that year. When I started thinking of questions
+		to which I could provide &quot;corrected&quot; answers, I realized I could
+		do quite a lot of them - almost enough to do my own FAQ! The first
+		section I wrote was &quot;Null Statements&quot;, all of the others came
+		later. However, perhaps 80% of the text you see here was, with
+		minor alterations, written that morning.</P>
+		<P>You'll notice that the IAQ is much shorter, and perhaps less informative,
+		than the real FAQ. This is largely a result of laziness, but I
+		don't think there's as much funny stuff to be written; already,
+		this suffers from an excessive reuse of jokes.</P>
+		<P>These annotations are intended to highlight and explain the jokes.
+		You see, some people don't get them. One person corrected &quot;errors&quot;
+		(some of them, in fact, were factually correct!) up through Chapter
+		7, pointing out at one point &quot;you would have done better to leave
+		this as a humorous non-answer&quot;; apparently, the fact that they're
+		<EM>all</EM> humorous non-answers had escaped him.</P>
+		<H4><A NAME="intro"></A>Intro Annotations:</H4>
+		<P>Starting from &quot;Certain Topics&quot;, this is just word-similarity parody
+		of the comp.lang.c FAQ.</P>
+		<H4>Table of Contents:</H4>
+		<P>Nothing to see but a link farm. Move along, move along.</P>
+		<H3><A NAME="section-1"></A>Section 1: Declarations and Initializations</H3>
+		<P>Several of the jokes in this section are snide comments about
+		the horribly stupid rules people use, and even write up in books,
+		for how to choose data types, and some of the misconceptions people
+		have about them. 
+		<P>
+		<H4><A NAME="question-1.3"></A>1.3</H4>
+		<P>Of course, the joke here is that the encoding for the character
+		set (thus, the representation of character constants such as <CODE>'i'</CODE>) has nothing to do with the location of objects with a given
+		name. This question has garnered more &quot;corrections&quot; than any other;
+		typically, it's the first really obviously wrong answer that people
+		see, but if they're going to see a funny answer and not get the
+		joke, this is the one. Of course, the <EM>conclusion</EM> reached is correct - outside of structures, there's no ordering
+		at all to variable declarations, and even inside structures, there
+		can be arbitrary padding between members.</P>
+		<H4><A NAME="question-1.4"></A>1.4</H4>
+		<P>The rule proposed is precisely backwards; definitions are what
+		conflict with each other, while multiple compatible declarations
+		are allowed. Most programmers like being able to include a header
+		once in every module, at the very least - which is what's prevented
+		by having multiple definitions.</P>
+		<H4><A NAME="question-1.5"></A>1.5</H4>
+		<P>Subtle point: In many implementations, the program will <EM>compile</EM> without errors - it's only the &quot;link&quot; phase (translation phase
+		8, to the pedants) which fails when no object named <CODE>bar</CODE> can be found. The remark about assigning bar a value is a reference
+		to the difference between a declaration (such as &quot;<CODE>int bar;</CODE>&quot;), which is compatible with another, external, definition, and
+		a definition (such as &quot;<CODE>int bar = 5;</CODE>&quot;) which reserves storage. 
+		<P>
+		<H4><A NAME="question-1.7"></A>1.7</H4>
+		<P>Several jokes in here. The first is the one about Microsoft inventing
+		C. Microsoft is often credited with inventions they had nothing
+		to do with; I just wanted to be a joiner. I once posted a URL
+		for this question in part of a Usenet discussion, along with a
+		paragraph (in the Usenet post) crediting Microsoft with the invention
+		of &quot;the separation of Church and State&quot;. Despite this, I got angry
+		corrections from people who didn't like Microsoft.</P>
+		<P>The code is subtly wrong in many ways. Apart from the subtle type
+		mismatch (printf's first argument is <CODE>const char *</CODE>), the second example is completely wrong; a function name without
+		()'s to indicate calling is just an expression, which is discarded.
+		This is the real reason the function pointer is only called through
+		in the first example. The comment about ls is completely irrelevant.</P>
+		<H4><A NAME="question-1.9"></A>1.9</H4>
+		<P>This is obviously complete nonsense, although it would likely
+		work on some system somewhere. Of course, it would lead to a huge
+		amount of casting which shouldn't be necessary at all. A more
+		traditional solution would be to separate the typedef out from
+		the struct declaration, and put the typedef first, or alternatively,
+		to name the struct and spell its name out in the declaration of
+		the pointer-to-next-item.</P>
+		<H4><A NAME="question-1.10"></A>1.10</H4>
+		<P>Well, actually, regular ints can be entered using hexadecimal
+		notation, and the example given shows octal (but is correct, because
+		after all, octal <CODE>07</CODE> and hex <CODE>0x7</CODE> are the same value.)</P>
+		<H4><A NAME="question-1.11"></A>1.11</H4>
+		<P>For about two years, there was an imbalance in the huge expression;
+		I had a square bracket matched with a parens. One of the &quot;corrections&quot;
+		I got was a suggestion that this huge expression would be more
+		readable if I used typedefs to build it. Obviously, this construction
+		is completely wrong; it's done wrong-way-out, and then some. The
+		&quot;mirrors&quot; comment is just a remark about the constant abuse of
+		the phrase &quot;declaration reflects use&quot;. (Which is actually a fairly
+		accurate model; the idea is that, if I declare &quot;<CODE>int *ip</CODE>&quot;, that &quot;<CODE>*ip</CODE>&quot; will have type &quot;<CODE>int</CODE>&quot;. Thus, declaration (&quot;<CODE>*ip</CODE>&quot;) reflects use (&quot;<CODE>*ip</CODE>&quot;).)</P>
+		<H3><A NAME="section-2"></A>Section 2: Structures, Unions, and Enumerations</H3>
+		<P>This section has no cohesive structure; it's pretty much just
+		a collection of really bad answers to questions from the real
+		FAQ. 
+		<H4><A NAME="question-2.2"></A>2.2 </H4>
+		<P>Obviously, Ritchie developed C long before he wrote the book,
+		and he worked at Bell Labs all along. The &quot;video game developer&quot;
+		is a reference to the story that Unix evolved from a &quot;space war&quot;
+		game developed by Thompson. </P>
+		<H4><A NAME="question-2.3"></A>2.3</H4>
+		<P>Once again, just plain nonsense. Of course, the caveat is correct
+		for some systems, by sheer coincidence. Structs passed on the
+		stack were once fairly risky because some systems had very limited
+		stack space. </P>
+		<H4><A NAME="question-2.5"></A>2.5</H4>
+		<P>The idea is that, since all output occurs &quot;as if by successive
+		calls to fputc&quot;, and putchar is really very similar to fputc...
+		Of course, this is nonsense. The line about the sign bits is just
+		noise; I wasn't referring to anything in particular, except perhaps
+		the general paranoia about signed types that I tend to have. </P>
+		<H4><A NAME="question-2.6"></A>2.6</H4>
+		<P>A surprisingly good rule, for how stupid it is. This is a side
+		effect of the &quot;all the world's a 32-bit machine&quot; fallacy. </P>
+		<H4><A NAME="question-2.9"></A>2.9</H4>
+		<P>The gimmick here (related to 2.6's 4-bytes-per-object joke) is
+		that the size of the union will almost always be the size of the
+		largest member (8 bytes is common on many systems), which happens
+		to be the sum of the logical sizes of the other members. At least
+		one reader pointed out that this code could never be expected
+		to work; most astute. </P>
+		<H4><A NAME="question-2.10"></A>2.10</H4>
+		<P>Mr. Reagan (U.S. President, 1980-1988) fired a number of air traffic
+		controllers who went on strike (which their contracts, plausibly,
+		prohibited). </P>
+		<H4><A NAME="question-2.11"></A>2.11</H4>
+		<P>C9X actually offers a way to do this, with the very similar <CODE>(struct foo) { 3 }</CODE>. </P>
+		<H3><A NAME="section-3"></A>Section 3: Expressions</H3>
+		<P>Of course, most of these are jokes about the meaning of undefined
+		behavior.</P>
+		<H4><A NAME="question-3.5"></A>3.5</H4>
+		
+<P>The point here is that the comma operator creates sequence points, and, because 
+  it has such a low precedence, it tends to have very powerful control over otherwise 
+  confusing expressions. Of course, it makes them just as confusing... but that's 
+  okay.</P>
+		<H3><A NAME="section-4"></A>Section 4: Null Statements</H3>
+		<P>This section is mostly phrasing-similarity games with the FAQ's
+		section on null pointers. Null statements are probably nearly
+		as misunderstood, simply because they're rarely used.</P>
+		<H4><A NAME="question-4.2"></A>4.2</H4>
+		<P>The line about the FDA refers to the &quot;side-effects&quot; of drugs;
+		a completely different meaning of &quot;side-effects&quot;.</P>
+		<H4><A NAME="question-4.3"></A>4.3</H4>
+		<P>&quot;All bits zero&quot; is a reference to the common belief that a &quot;null
+		pointer&quot; is a pointer with a machine representation consisting
+		entirely of zero bits.</P>
+		<H4><A NAME="question-4.5"></A>4.5</H4>
+		<P>I can't resist a chance to dig at C++'s vast collection of features
+		which probably wouldn't have survived except that someone had
+		existing code...</P>
+		<H4><A NAME="question-4.8"></A>4.8</H4>
+		<P>More utter nonsense derived from common misunderstandings. In
+		particular, it's not clear what &quot;segment bits&quot; are supposed to
+		be, and it doesn't matter whether or not there's a stray value
+		in a statement that doesn't do anything.</P>
+		<H4><A NAME="question-4.9"></A>4.9</H4>
+		<P>If you follow the first two rules, you'll probably be okay. The
+		line about &quot;the author of the FAQ, or the moderator of the group&quot;
+		refers to the fact that I was posting this to comp.lang.c.moderated,
+		which I moderate. (Steve Summit, the author of the original FAQ,
+		is one of my co-moderators) Emily Postnews is the (fictional)
+		author of a delightful guide to netiquette; no one listens to
+		her (which may be just as well, as all of her advice is intended
+		to be taken as sarcasm). 
+		<H3><A NAME="section-5"></A>Section 5: Arrays and Pointers</H3>
+		<H4><A NAME="question-5.1"></A>5.1, 5.2</H4>
+		<P>This is just a parody of the question about &quot;<CODE>char *a</CODE>&quot; and &quot;<CODE>char a[6]</CODE>&quot; in the real FAQ; of course, the two declarations are incompatible.</P>
+		<H4><A NAME="question-5.4"></A>5.4</H4>
+		<P>In fact, the reason typically given is that arrays aren't really
+		quite objects in C, and they're often described as &quot;second-class
+		objects&quot;. The reference to Marxism is irrelevant, at best.</P>
+		<H4><A NAME="question-5.5"></A>5.5</H4>
+		<P>When I started annotating this, this was question 5.6; I have
+		no idea what happened to 5.5. Anyway, the material is, of course,
+		a joke. The real reason is that the function's parameter is a
+		pointer, not an array; this looks silly, but it's how the language
+		was built.</P>
+		<H4><A NAME="question-5.6"></A>5.6</H4>
+		<P>In other words, &quot;some people will say anything&quot;. </P>
+		<H4><A NAME="question-5.8"></A>5.8</H4>
+		<P>First, a joke about the surprisingly limited character set (yes,
+		'f' really is in the standard minimum character set), then a remark
+		about the non-existant, but often described, &quot;equivalence&quot; of
+		arrays and pointers. The &quot;equivalence&quot; is that, since &quot;<CODE>i[a]</CODE>&quot; really means &quot;<CODE>*(a+i)</CODE>&quot;, and addition is commutative, this is equivalent to &quot;<CODE>*(i+a)</CODE>&quot;, which could also be spelled &quot;<CODE>a[i]</CODE>&quot;.</P>
+		<H4><A NAME="question-5.9"></A>5.9</H4>
+		
+<P>The code provided does, in fact, &quot;read&quot; the numbers zero through 
+  99 into the array. The expression &quot;<CODE>(scanf, (&quot;%d&quot;, i))</CODE>&quot; 
+  is really an abuse of the comma operator; the values of the string literal, 
+  and of the name &quot;<CODE>scanf</CODE>&quot; (which, since it's not a function 
+  call, decays into a pointer to the function of the same name) are discarded, 
+  so really, this is just a loop of <CODE>&quot;a[i] = i</CODE>&quot;. The reason 
+  to include <CODE>&lt;stdio.h&gt;</CODE> is that, without it, there will be no 
+  prototype for <CODE>scanf</CODE> in scope, and that will make the reference 
+  to the name invalid.</P>
+		<H3><A NAME="section-6"></A>Section 6: Memory Allocation</H3>
+		
+<H4><A NAME="question-6.1"></A>6.1</H4>
+<P>Of course, even if the semicolon weren't missing, it still wouldn't work, because 
+  no space is allocated for the data stored by gets, and even if it were, gets 
+  would be able to overrun that space.</P>
+		
+<H4><A NAME="question-6.3"></A>6.3</H4>
+		
+<P>This is nonsense, of course; the casts are historical from when <code>char 
+  *</code> was the closest thing C had to a generic pointer type.</P>
+		
+<H4><A NAME="question-6.5"></A>6.5</H4>
+		
+<P>Part of the joke is swapping <em>nybbles</em>, when endianness normally affects 
+  the order of bytes within larger words.</P>
+		<H3><A NAME="section-7"></A>Section 7: Characters and Strings</H3>
+		
+<H4><A NAME="question-7.1"></A>7.1</H4>
+		
+<p>One of the complicated tricks would be writing &quot;<code>i = c;</code>&quot;.</p>
+		
+<H3><A NAME="section-8"></A>Section 8: Boolean Expressions and Variables </H3>
+		
+<H4><A NAME="question-8.3"></A>8.3</H4>
+		
+<P>This is a reference to a wonderful stand-up comedy routine about metaphysics. 
+  The same routine was the origin of the oft-repeated &quot;Yes, fish think, but 
+  not fast enough.&quot;</P>
+		<H3><A NAME="section-9"></A>Section 9: C Preprocessor</H3>
+		
+<H4><A NAME="question-9.1"></A>9.1 </H4>
+		
+<P>Of course, they don't. It's just a joke about the &quot;it worked here, it 
+  must be standard&quot; attitude one sees from some newbies.</P>
+		<H3><A NAME="section-10"></A>Section 10: ANSI C</H3>
+		
+<H4><A NAME="question-10.1"></A>10.1</H4>
+		
+<P>A lot of readers in comp.lang.c have been known to flame Herbert Schildt (who 
+  is an observing member of the committee) for his books on C, which frequently 
+  contradict the standard.</P>
+		
+<H4><A NAME="question-10.8"></A>10.8</H4>
+		
+<P>Of course, it was because of the specialized needs of certain committee members, 
+  but not like that.</P>
+		
+<H4><A NAME="question-10.10"></A>10.10</H4>
+		
+<P>Zork references.</P>
+		
+<H4><A NAME="question-10.13"></A>10.13</H4>
+		
+<P>Actually, it's a hack some compilers have to indicate that a file should not 
+  be re-processed, even if a series of <code>#include</code>s would indicate that 
+  it should be seen twice - but this is a good way to point out the complete impossibility 
+  of relying on portable behavior from a pragma.</P>
+		
+<H3><A NAME="section-11"></A>Section 11: Stdio</H3>
+		
+<H4><A NAME="question-11.2"></A>11.2</H4>
+		
+<P>The line about &quot;fast printf&quot; was a reference to the common belief 
+  that &quot;fgrep&quot; (fixed grep) is &quot;fast grep&quot;.</P>
+		
+<H4><A NAME="question-11.7"></A>11.7</H4>
+		
+<P>I felt that the document needed at least one moderately vulgar joke. :)</P>
+		
+<H4><A NAME="question-11.9"></A>11.9</H4>
+		
+<P>Pretending that the problem is the return key, not the need to wait for a signal 
+  than input is complete. </P>
+		
+<H4><A NAME="question-11.15"></A>11.15</H4>
+<P>More Zork references.</P>
+		
+<H3><A NAME="section-12"></A>Section 12: Library Subroutines</H3>
+		
+<H4><A NAME="question-12.9"></A>12.9</H4>
+<P>Another text adventure, this time, Colossal Cave Adventure.</P>
+		<H3><A NAME="section-13"></A>Section 13: Floating Point</H3>
+		
+<H4><A NAME="question-13.1"></A>13.1</H4>
+		
+<P>Many early Pentiums had a floating point bug.</P>
+		<H3><A NAME="section-16"></A>Section 16: Strange Problems</H3>
+		
+<H4><A NAME="question-16.1"></A>16.1 </H4>
+		
+<P>A general comment on the importance of explaining what you think the problem 
+  is. </P>
+		
+<H3><A NAME="section-18"></A>Section 18: System Dependencies</H3>
+		
+<H4><A NAME="question-18.3"></A>18.3</H4>
+		
+<P>Whiteouts are a way for a filesystem mounted &quot;over&quot; another filesystem 
+  to indicate that there is no file of a given name. This is pretty arcane, and 
+  totally irrelevant. </P>
+		<H3><A NAME="section-19"></A>Section 19: Miscellaneous</H3>
+		
+<H4><A NAME="question-19.1"></A>19.1</H4>
+		
+<P>In other words, &quot;yes&quot;.</P>
+		
+<H4><A NAME="question-19.6"></A>19.6</H4>
+		
+<P>The <code>#log%</code> is a reference to the RCS behavior of putting logs in 
+  places where it sees <code>$log$</code>. At least on my keyboards, the punctuation 
+  used is close, but not close enough. The reference to 1 Kings 7:23 is one of 
+  the places where particularly crazy people have gotten the idea that pi is exactly 
+  3. (In fact, the numbers given are clearly only to one significant figure, and 
+  pi, to one significant figure, is 3.)</P>
+<P>Of course, the main point is that a math header will likely be so dependant 
+  on the system as to make it irrelevant to anyone else. Same with any other header, 
+  really. </P>
+<H4><A NAME="question-19.27"></A>19.27</H4>
+<p>What scares me most is that people have made it as far as Section 7 or so correcting 
+  &quot;errors&quot;. Many of the &quot;corrections&quot; I've gotten over the 
+  years were actually <em>less</em> accurate than the material &quot;corrected&quot;.</p>
+		</BODY>
+
+</HTML>

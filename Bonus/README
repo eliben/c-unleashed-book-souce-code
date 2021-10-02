@@ -1,0 +1,14 @@
+A little bonus for you, in the shape of a puzzle.
+
+Take a look at gcg8.c. Without compiling it, try to find out what it does.
+
+At some point, you may wish to compile it, of course. If your compiler rejects it as containing
+too many characters per line (which your compiler is entitled to do), you may wish to compile
+gcg5.c instead, which all ANSI C compilers must accept.
+
+If you get stuck, read the CHEAT file.
+
+
+Richard Heathfield
+
+19 June 2000.

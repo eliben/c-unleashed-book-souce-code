@@ -1,0 +1,3 @@
+  if(NULL = root->left)
+  {
+    /* ... */

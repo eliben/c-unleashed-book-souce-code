@@ -1,0 +1,47 @@
+Those with picky compilers, skip 20 lines.
+
+Compile gcg8.c.
+
+Run it, like this:
+
+gcg8 > gcg7.c
+
+Compile gcg7.c.
+
+Run it, like this:
+
+gcg7 > gcg6.c
+
+Compile gcg6.c.
+
+Run it, like this:
+
+gcg6 > gcg5.c
+
+Those with picky compilers, start here:
+
+Compile gcg5.c.
+
+Run it, like this:
+
+gcg5 > gcg4.c
+
+Keep doing this, compiling each output file in turn, until
+you get gcg1.c. Compile this, run it, and save the output
+as gcg.c.
+
+Compile that, and run it like this:
+
+gcg < anyCprogramYouLike > gen.c
+
+Have a close look at gen.c
+
+Compile it. Run it. Save the output. Compare the output to anyCprogramYouLike.c.
+
+Notice anything odd?
+
+:-)
+
+Richard Heathfield
+
+19 June 2000.

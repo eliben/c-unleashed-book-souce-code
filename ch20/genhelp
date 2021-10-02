@@ -1,0 +1,13 @@
+Generic helpfile. Consult crystal ball for full instructions.
+
+Please note that the code generating routine is not clever enough to understand
+that some characters need to be protected in printf statements. Therefore,
+if you want your help display to contain special characters, they should be protected.
+
+In other words, treat everything in this file as if it were in a printf statement.
+
+Thus, \" for quotes, \\ for backslash (as in a DOS pathname)
+
+
+
+

@@ -1,0 +1,49 @@
+# step.pid
+#
+# shows the step function response with a 10%
+# step in "manual mode", that is using the
+# constant bias parameter only
+#
+# sets the Set point value the same as the
+# desired output, even though it has no
+# real effect, so my plot capture routine
+# picks it up and it shows in the illustration
+#
+#  Copyright (C) 2000  Jack Klein
+#                      Macmillan Computer Publishing
+#
+
+# ordinary parameters, set before execution begins
+
+P=0            Proportional gain
+I=0            Integral gain
+D=0            Derivative gain
+H=0            output Hold
+A=0            Acceleration feed forward
+F=0            Friction feed forward
+V=0            Velocity feed forward
+B=20           constant Bias
+R=0            acceleration Rate
+S=20           Set point
+T=1            Transfer ratio
+L=0.368        response Lag
+N=-100         miNimum output
+M=100          Maximum output
+W=0            sleW limit
+
+# execute 51 cycles altogether, 11 with the
+# original parameters to allow the output to settle
+
+Y=51           cYcle count
+
+# now events triggered after 11 cycles
+# change the constant Bias and Set point
+# both from 20 to 30, a 10% step and turn
+# on the P with a high gain
+
+@11  S=30      Set point
+@11  P=1.9     Proportional gain
+
+# finished 51 cycles, time to quit
+
+@51  Q         Quit 
